@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { useOrder } from '../context/OrderContext';
+//import { useOrder } from '../context/OrderContext';
 import { useAuth } from '../context/AuthContext';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { API_URL } from '../config';
 
 // Import all images
-import meatSeafood from '../assets/meatSeafood.jpg';
 import groceries from '../assets/groceries.jpg';
 import drinks from '../assets/drinks.jpg';
 import fish from '../assets/fish.jpg';
@@ -450,9 +449,9 @@ const CheckoutForm = () => {
 };
 
 const CheckoutPage = () => {
-  const { items, clearCart } = useCart();
-  const { addOrder } = useOrder();
-  const [selectedTip, setSelectedTip] = useState<number>(0);
+  const { items } = useCart();
+ // const { addOrder } = useOrder();
+  const [selectedTip] = useState<number>(0);
 
   // Calculate subtotal
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);

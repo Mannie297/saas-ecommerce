@@ -8,8 +8,8 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { items, totalItems } = useCart();
-  const { user, logout, isAuthenticated } = useAuth();
+  const { totalItems } = useCart();
+  const { user, logout} = useAuth();
 
   const categories = [
     { name: 'Best Sellers', path: '/category/best-sellers' },

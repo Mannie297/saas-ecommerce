@@ -1,4 +1,3 @@
-import React from 'react';
 import ProductCard from '../components/ProductCard';
 import { products } from '../data/products';
 
@@ -9,7 +8,7 @@ const BestSellersPage = () => {
       <h1 className="text-3xl font-bold mb-6">Best Sellers</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {bestSellers.map(product => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard key={product._id} {...product} />
         ))}
       </div>
     </div>

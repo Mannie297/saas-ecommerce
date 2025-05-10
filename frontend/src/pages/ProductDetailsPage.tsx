@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useProduct } from '../context/ProductContext';
-import ProductCard from '../components/ProductCard';
+//import ProductCard from '../components/ProductCard';
 
 // Import all images
 import groceries from '../assets/groceries.jpg';

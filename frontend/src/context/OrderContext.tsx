@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { Order, OrderItem } from '../types/order';
+import { Order } from '../types/order';
 
 interface OrderContextType {
   orders: Order[];
