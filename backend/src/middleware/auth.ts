@@ -9,6 +9,19 @@ export interface AuthRequest extends Request {
     name: string;
     email: string;
   };
+  body: {
+    name?: string;
+    description?: string;
+    price?: number;
+    image?: string;
+    category?: string;
+    stock?: number;
+    [key: string]: any;
+  };
+  params: {
+    id: string;
+    [key: string]: string;
+  };
 }
 
 export const auth = async (req: AuthRequest, res: Response, next: NextFunction) => {

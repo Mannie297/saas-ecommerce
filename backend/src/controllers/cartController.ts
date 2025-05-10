@@ -9,6 +9,15 @@ interface AuthRequest extends Request {
     name: string;
     email: string;
   };
+  body: {
+    productId?: string;
+    quantity?: number;
+    [key: string]: any;
+  };
+  params: {
+    productId: string;
+    [key: string]: string;
+  };
 }
 
 // Get cart
