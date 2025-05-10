@@ -1,0 +1,14 @@
+{
+  "name": "saas",
+  "version": "1.0.0",
+  "description": "African Market E-commerce Platform",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "stripe": "^18.1.0"
+  }
+}
