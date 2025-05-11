@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "build": "tsc",
+    "build": "tsc && npm run copy-templates",
+    "copy-templates": "xcopy /E /I /Y src\\templates dist\\templates",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "create-admin": "ts-node src/scripts/createAdmin.ts",
