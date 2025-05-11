@@ -13,6 +13,33 @@ interface AuthRequest extends Request {
     name: string;
     email: string;
   };
+  body: {
+    items?: Array<{
+      productId: string;
+      quantity: number;
+      price?: number;
+    }>;
+    shippingAddress?: {
+      name: string;
+      email: string;
+      address: string;
+      city: string;
+      state: string;
+      zipCode: string;
+    };
+    paymentMethod?: string;
+    paymentDetails?: {
+      stripePaymentId: string;
+      shippingCost?: number;
+      tipAmount?: number;
+    };
+    status?: 'pending' | 'processing' | 'shipped' | 'delivered';
+    [key: string]: any;
+  };
+  params: {
+    id: string;
+    [key: string]: string;
+  };
 }
 
 interface PopulatedUser {
@@ -84,6 +111,10 @@ export const createPaymentIntent = async (req: Request, res: Response) => {
 export const createOrder = async (req: AuthRequest, res: Response) => {
   try {
     const { items, shippingAddress, paymentMethod, paymentDetails } = req.body;
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ message: 'Valid items array is required' });
+    }
 
     if (!paymentDetails) {
       console.error('Payment details missing from request');

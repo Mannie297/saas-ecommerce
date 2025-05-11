@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -35,7 +35,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 
 // Basic route for testing
-app.get('/api/test', (req, res) => {
+app.get('/api/test', function(req: Request, res: Response) {
   res.json({ message: 'API is working!' });
 });
 
