@@ -12,32 +12,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.auth = void 0;
+exports.optionalAuth = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const User_1 = __importDefault(require("../models/User"));
-const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const optionalAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
         const token = (_a = req.header('Authorization')) === null || _a === void 0 ? void 0 : _a.replace('Bearer ', '');
-        if (!token) {
-            throw new Error();
+        if (token) {
+            const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET || 'your-secret-key');
+            const user = yield User_1.default.findById(decoded._id);
+            if (user) {
+                req.user = {
+                    _id: user._id.toString(),
+                    role: user.role,
+                    name: user.name,
+                    email: user.email
+                };
+            }
         }
-        const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET || 'your-secret-key');
-        const user = yield User_1.default.findById(decoded._id);
-        if (!user) {
-            throw new Error();
-        }
-        req.user = {
-            _id: user._id.toString(),
-            role: user.role,
-            name: user.name,
-            email: user.email
-        };
-        console.log('auth middleware - req.user:', req.user);
         next();
     }
     catch (error) {
-        res.status(401).json({ message: 'Please authenticate' });
+        // If token is invalid, treat as guest
+        next();
     }
 });
-exports.auth = auth;
+exports.optionalAuth = optionalAuth;

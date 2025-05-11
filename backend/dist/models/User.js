@@ -45,7 +45,14 @@ const userSchema = new mongoose_1.default.Schema({
 userSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         if (this.isModified('password')) {
-            this.password = yield bcryptjs_1.default.hash(this.password, 8);
+            try {
+                const salt = yield bcryptjs_1.default.genSalt(10);
+                this.password = yield bcryptjs_1.default.hash(this.password, salt);
+            }
+            catch (error) {
+                console.error('Error hashing password:', error);
+                throw error;
+            }
         }
         next();
     });
@@ -53,14 +60,49 @@ userSchema.pre('save', function (next) {
 // Generate auth token
 userSchema.methods.generateAuthToken = function () {
     return __awaiter(this, void 0, void 0, function* () {
-        const token = jsonwebtoken_1.default.sign({ _id: this._id.toString() }, process.env.JWT_SECRET || 'your-secret-key', { expiresIn: '7d' });
-        return token;
+        const secret = process.env.JWT_SECRET;
+        if (!secret) {
+            console.error('JWT_SECRET is not set in environment variables');
+            throw new Error('Server configuration error');
+        }
+        try {
+            const token = jsonwebtoken_1.default.sign({
+                _id: this._id.toString(),
+                email: this.email,
+                role: this.role
+            }, secret, { expiresIn: '7d' });
+            return token;
+        }
+        catch (error) {
+            console.error('Error generating auth token:', error);
+            throw error;
+        }
     });
 };
 // Compare password
 userSchema.methods.comparePassword = function (password) {
     return __awaiter(this, void 0, void 0, function* () {
-        return bcryptjs_1.default.compare(password, this.password);
+        if (!password) {
+            console.error('No password provided for comparison');
+            return false;
+        }
+        if (!this.password) {
+            console.error('No stored password found for user');
+            return false;
+        }
+        try {
+            const isMatch = yield bcryptjs_1.default.compare(password, this.password);
+            console.log('Password comparison result:', {
+                isMatch,
+                providedLength: password.length,
+                storedLength: this.password.length
+            });
+            return isMatch;
+        }
+        catch (error) {
+            console.error('Error comparing passwords:', error);
+            return false;
+        }
     });
 };
 const User = mongoose_1.default.model('User', userSchema);

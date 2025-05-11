@@ -30,10 +30,11 @@
     "stripe": "^14.17.0"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.13",
+    "@types/cors": "^2.8.18",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.17.32",
+    "@types/mongoose": "^5.11.96",
+    "@types/node": "^20.17.46",
     "@types/nodemailer": "^6.4.17",
     "@types/supertest": "^6.0.2",
     "jest": "^29.7.0",

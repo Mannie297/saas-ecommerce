@@ -12,32 +12,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.auth = void 0;
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const User_1 = __importDefault(require("../models/User"));
-const auth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const listUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const token = (_a = req.header('Authorization')) === null || _a === void 0 ? void 0 : _a.replace('Bearer ', '');
-        if (!token) {
-            throw new Error();
-        }
-        const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET || 'your-secret-key');
-        const user = yield User_1.default.findById(decoded._id);
-        if (!user) {
-            throw new Error();
-        }
-        req.user = {
-            _id: user._id.toString(),
-            role: user.role,
-            name: user.name,
-            email: user.email
-        };
-        console.log('auth middleware - req.user:', req.user);
-        next();
+        // Connect to MongoDB
+        yield mongoose_1.default.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/saas');
+        console.log('Connected to MongoDB');
+        // List all users
+        const users = yield User_1.default.find({}, { password: 0 });
+        console.log('Users:', users);
+        process.exit(0);
     }
     catch (error) {
-        res.status(401).json({ message: 'Please authenticate' });
+        console.error('Error listing users:', error);
+        process.exit(1);
     }
 });
-exports.auth = auth;
+listUsers();

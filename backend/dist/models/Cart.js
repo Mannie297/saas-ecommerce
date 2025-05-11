@@ -34,11 +34,11 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const OrderSchema = new mongoose_1.Schema({
+const CartSchema = new mongoose_1.Schema({
     userId: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'User',
-        required: false
+        required: false // Optional for guest carts
     },
     items: [{
             productId: {
@@ -48,7 +48,8 @@ const OrderSchema = new mongoose_1.Schema({
             },
             quantity: {
                 type: Number,
-                required: true
+                required: true,
+                min: 1
             },
             price: {
                 type: Number,
@@ -57,65 +58,12 @@ const OrderSchema = new mongoose_1.Schema({
         }],
     total: {
         type: Number,
-        required: true
-    },
-    shippingAddress: {
-        name: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            required: true
-        },
-        address: {
-            type: String,
-            required: true
-        },
-        city: {
-            type: String,
-            required: true
-        },
-        state: {
-            type: String,
-            required: true
-        },
-        zipCode: {
-            type: String,
-            required: true
-        }
-    },
-    paymentMethod: {
-        type: String,
-        required: true
-    },
-    paymentDetails: {
-        type: {
-            stripePaymentId: {
-                type: String,
-                required: true
-            },
-            tipAmount: {
-                type: Number,
-                required: true,
-                default: 0
-            },
-            shippingCost: {
-                type: Number,
-                required: true,
-                default: 0
-            }
-        },
-        required: true
-    },
-    status: {
-        type: String,
-        enum: ['pending', 'processing', 'shipped', 'delivered'],
-        default: 'pending'
+        required: true,
+        default: 0
     },
     date: {
         type: Date,
         default: Date.now
     }
 });
-exports.default = mongoose_1.default.model('Order', OrderSchema);
+exports.default = mongoose_1.default.model('Cart', CartSchema);
