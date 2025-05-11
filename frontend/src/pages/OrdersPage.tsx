@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useOrder } from '../context/OrderContext';
 import { Link } from 'react-router-dom';
 import { Order } from '../types/order';
 
 // Import all images
-import meatSeafood from '../assets/meatSeafood.jpg';
 import groceries from '../assets/groceries.jpg';
 import drinks from '../assets/drinks.jpg';
 import fish from '../assets/fish.jpg';

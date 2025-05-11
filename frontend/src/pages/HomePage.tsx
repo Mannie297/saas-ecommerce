@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { products } from '../data/products';

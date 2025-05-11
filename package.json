@@ -10,5 +10,8 @@
   "dependencies": {
     "concurrently": "^8.2.2",
     "stripe": "^18.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1"
   }
 }
