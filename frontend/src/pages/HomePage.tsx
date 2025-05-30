@@ -10,30 +10,26 @@ import { products } from '../data/products';
 //import clearance from '../assets/clearance.jpg';
 //import bestseller from '../assets/bestSellers.jpg';
 
-import bestseller from '../assets/friedrice.jpg';
-import meatSeafood from '../assets/jollofrice.jpg';
-import groceries from '../assets/poundonsoup.jpg';
-import drinks from '../assets/ofadarice.jpg';
-import snacks from '../assets/moimoi.jpg';
-import personalCare from '../assets/pepperedchicken.jpg';
-import clearance from '../assets/peppersoup.jpg';
+import ricemeals from '../assets/friedrice.jpg';
+import swallow from '../assets/poundoegusi.jpg';
+import groceries from '../assets/yam.jpg';
+import drinks from '../assets/vitamalt.jpg';
+import snacks from '../assets/puffpuff.jpg';
+import pepperedMeat from '../assets/pepperedchicken.jpg';
+import pepperSoup from '../assets/peppersoup.jpg';
+import sides from '../assets/sides.jpg';
 
 
 const categories = [
   {
-    id: 'best-sellers',
-    name: 'Best Sellers',
-    image: bestseller,
+    id: 'rice-meals',
+    name: 'Rice',
+    image: ricemeals,
   },
   {
-    id: 'meat-seafood',
-    name: 'Meat & Seafood',
-    image: meatSeafood,
-  },
-  {
-    id: 'groceries',
-    name: 'Groceries',
-    image: groceries,
+    id: 'swallow',
+    name: 'Swallow',
+    image: swallow,
   },
   {
     id: 'drinks',
@@ -46,15 +42,26 @@ const categories = [
     image: snacks,
   },
   {
-    id: 'personal-care',
-    name: 'Personal Care',
-    image: personalCare,
+    id: 'peppered-meat',
+    name: 'Peppered meat',
+    image: pepperedMeat,
   },
   {
-    id: 'clearance',
-    name: 'Clearance',
-    image: clearance,
-  }
+    id: 'pepper-soup',
+    name: 'Pepper Soup',
+    image: pepperSoup,
+  },
+  {
+    id: 'sides',
+    name: 'Sides',
+    image: sides,
+  },
+  {
+    id: 'groceries',
+    name: 'Groceries',
+    image: groceries,
+  },
+  
 ];
 
 const HomePage = () => {
@@ -101,7 +108,7 @@ const HomePage = () => {
       <section>
         <h2 className="text-2xl font-bold mb-6 text-gray-900">Featured Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
+          {products.filter(product => product.category !== 'Groceries').map((product) => (
             <ProductCard key={product._id} {...product} />
           ))}
         </div>

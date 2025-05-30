@@ -34,6 +34,7 @@ const createTransporter = () => {
     },
   };
 
+  /*
   console.log('SMTP Configuration:', {
     host: config.host,
     port: config.port,
@@ -41,6 +42,7 @@ const createTransporter = () => {
     user: config.auth.user,
     hasPassword: !!config.auth.pass
   });
+  */
 
   return nodemailer.createTransport(config);
 };
@@ -134,5 +136,31 @@ export const sendOrderNotification = async (order: OrderDetails, adminEmail: str
     console.error('Error sending order notification email:', error);
     // Don't throw the error, just log it
     console.warn('Continuing without email notification');
+  }
+};
+
+export const sendContactMessage = async (
+  data: { name: string; email: string; subject: string; message: string },
+  adminEmails: string[]
+) => {
+  try {
+    const transporter = getTransporter();
+    if (!transporter) {
+      console.warn('Email service is not configured. Skipping contact message.');
+      return;
+    }
+    const template = loadTemplate('contactMessage');
+    const html = template({ ...data });
+    const mailOptions = {
+      from: process.env.SMTP_FROM || 'noreply@yourstore.com',
+      to: adminEmails.join(','),
+      subject: `[Contact Us] ${data.subject}`,
+      html,
+    };
+    await transporter.sendMail(mailOptions);
+    console.log(`Contact message sent to admins: ${adminEmails.join(', ')}`);
+  } catch (error) {
+    console.error('Error sending contact message:', error);
+    console.warn('Continuing without contact message email');
   }
 }; 

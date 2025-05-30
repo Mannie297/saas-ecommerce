@@ -11,13 +11,14 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import CartPage from './pages/CartPage';
 import OrdersPage from './pages/OrdersPage';
-import BestSellersPage from './pages/BestSellersPage';
-import MeatSeafoodPage from './pages/MeatSeafoodPage';
+//import BestSellersPage from './pages/RicePage';
+import RicePage from './pages/RicePage';
+import SwallowPage from './pages/SwallowPage';
 import GroceriesPage from './pages/GroceriesPage';
 import DrinksPage from './pages/DrinksPage';
 import SnacksPage from './pages/SnacksPage';
-import PersonalCarePage from './pages/PersonalCarePage';
-import ClearancePage from './pages/ClearancePage';
+import PepperedMeatPage from './pages/PepperedMeatPage';
+import PepperSoupPage from './pages/PepperSoupPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -26,10 +27,13 @@ import CheckoutPage from './pages/CheckoutPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import AdminProtectedRoute from './components/AdminProtectedRoute';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
+import ContactUsPage from './pages/ContactUsPage';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <AuthProvider>
         <ProductProvider>
           <CartProvider>
@@ -44,13 +48,14 @@ const App = () => {
                       <Route path="/register" element={<RegisterPage />} />
                       <Route path="/category/:categoryId" element={<CategoryPage />} />
                       <Route path="/" element={<HomePage />} />
-                      <Route path="/best-sellers" element={<BestSellersPage />} />
-                      <Route path="/meat-seafood" element={<MeatSeafoodPage />} />
+                      {/*<Route path="/best-sellers" element={<BestSellersPage />} />*/}
+                      <Route path="/rice" element={<RicePage />} />
+                      <Route path="/swallow" element={<SwallowPage />} />
                       <Route path="/groceries" element={<GroceriesPage />} />
                       <Route path="/drinks" element={<DrinksPage />} />
                       <Route path="/snacks" element={<SnacksPage />} />
-                      <Route path="/personal-care" element={<PersonalCarePage />} />
-                      <Route path="/clearance" element={<ClearancePage />} />
+                      <Route path="/peppered-meat" element={<PepperedMeatPage />} />
+                      <Route path="/pepper-soup" element={<PepperSoupPage />} />
                       <Route path="/product/:id" element={<ProductDetailsPage />} />
                       <Route path="/search" element={<SearchResultsPage />} />
                       <Route path="/cart" element={<CartPage />} />
@@ -65,6 +70,7 @@ const App = () => {
                           </AdminProtectedRoute>
                         }
                       />
+                      <Route path="/contact" element={<ContactUsPage />} />
 
                       {/* Protected Routes */}
                       <Route

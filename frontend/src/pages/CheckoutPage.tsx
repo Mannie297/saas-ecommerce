@@ -33,6 +33,10 @@ import pepperedchicken from '../assets/pepperedchicken.jpg';
 import moimoi from '../assets/moimoi.jpg';
 import ofadarice from '../assets/ofadarice.jpg';
 import poundonsoup from '../assets/poundonsoup.jpg';
+import poundoyam from '../assets/poundoyam.jpg';
+import vitamalt from '../assets/vitamalt.jpg';
+import yam from '../assets/yam.jpg';
+import turkey from '../assets/turkey.jpg';
 
 // Map image names to imported images
 const getImageSource = (imageName: string) => {
@@ -65,7 +69,11 @@ const getImageSource = (imageName: string) => {
     'pepperedchicken.jpg': pepperedchicken,
     'moimoi.jpg': moimoi,
     'ofadarice.jpg': ofadarice,
-    'poundonsoup.jpg': poundonsoup
+    'poundonsoup.jpg': poundonsoup,
+    'poundoyam.jpg': poundoyam,
+    'vitamalt.jpg': vitamalt,
+    'yam.jpg': yam,
+    'turkey.jpg': turkey
   };
 
   if (imageMap[cleanImageName]) {
@@ -486,6 +494,10 @@ const CheckoutPage = () => {
     <Elements stripe={stripePromise}>
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-2xl font-bold mb-6">Checkout</h1>
+        <div className="flex items-center mb-6">
+          <span className="text-green-600 mr-2" role="img" aria-label="secure">🔒</span>
+          <span className="text-sm text-gray-700 font-medium">Secure payment with <span className="font-semibold text-blue-600">Stripe</span></span>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-lg font-semibold mb-4">Shipping Information</h2>

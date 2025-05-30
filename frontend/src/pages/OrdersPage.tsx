@@ -29,6 +29,8 @@ import pepperedchicken from '../assets/pepperedchicken.jpg';
 import moimoi from '../assets/moimoi.jpg';
 import ofadarice from '../assets/ofadarice.jpg';
 import poundonsoup from '../assets/poundonsoup.jpg';
+import yam from '../assets/yam.jpg';
+import turkey from '../assets/turkey.jpg';
 
 // Map image names to imported images
 const getImageSource = (imageName: string | undefined) => {
@@ -69,7 +71,9 @@ const getImageSource = (imageName: string | undefined) => {
     'pepperedchicken.jpg': pepperedchicken,
     'moimoi.jpg': moimoi,
     'ofadarice.jpg': ofadarice,
-    'poundonsoup.jpg': poundonsoup
+    'poundonsoup.jpg': poundonsoup,
+    'yam.jpg': yam,
+    'turkey.jpg': turkey
   };
 
   // If the image is a filename, return the corresponding imported image

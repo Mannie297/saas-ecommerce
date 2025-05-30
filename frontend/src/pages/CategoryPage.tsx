@@ -4,13 +4,14 @@ import { useProduct } from '../context/ProductContext';
 
 // Map URL slugs to actual category names in the database
 const categoryMapping: { [key: string]: string } = {
-  'best-sellers': 'Best Sellers',
-  'meat-seafood': 'Meat & Seafood',
+  'rice-meals': 'Rice Meals',
+  'swallow': 'Swallow',
   'groceries': 'Groceries',
   'drinks': 'Drinks',
   'snacks': 'Snacks',
-  'personal-care': 'Personal Care',
-  'clearance': 'Clearance',
+  'peppered-meat': 'Peppered Meat',
+  'pepper-soup': 'Pepper Soup',
+  'sides': 'Sides',
 };
 
 const CategoryPage = () => {

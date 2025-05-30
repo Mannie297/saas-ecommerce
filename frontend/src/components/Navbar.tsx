@@ -12,13 +12,14 @@ const Navbar = () => {
   const { user, logout} = useAuth();
 
   const categories = [
-    { name: 'Best Sellers', path: '/category/best-sellers' },
-    { name: 'Meat & Seafood', path: '/category/meat-seafood' },
-    { name: 'Groceries', path: '/category/groceries' },
+    { name: 'Rice', path: '/category/rice-meals' },
+    { name: 'Swallow', path: '/category/swallow' },
     { name: 'Drinks', path: '/category/drinks' },
     { name: 'Snacks', path: '/category/snacks' },
-    { name: 'Personal Care', path: '/category/personal-care' },
-    { name: 'Clearance', path: '/category/clearance' },
+    { name: 'Peppered Meat', path: '/category/peppered-meat' },
+    { name: 'Pepper Soup', path: '/category/pepper-soup' },
+    { name: 'Sides', path: '/category/sides' },
+    { name: 'Groceries', path: '/category/groceries' },
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -41,7 +42,7 @@ const Navbar = () => {
           {/* Logo and Store Name */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-3">
-              <img className="h-10 w-auto" src={logo} alt="Logo" />
+              <img className="h-10 w-auto p-1 rounded-full aspect-[2/1] object-cover" src={logo} alt="Logo" />
               <span className="text-2xl font-bold text-gray-900">Naija Kitchen</span>
             </Link>
           </div>

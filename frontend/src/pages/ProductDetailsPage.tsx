@@ -30,6 +30,10 @@ import pepperedchicken from '../assets/pepperedchicken.jpg';
 import moimoi from '../assets/moimoi.jpg';
 import ofadarice from '../assets/ofadarice.jpg';
 import poundonsoup from '../assets/poundonsoup.jpg';
+import vitamalt from '../assets/vitamalt.jpg';
+import poundoyam from '../assets/poundoyam.jpg';
+import yam from '../assets/yam.jpg';
+import turkey from '../assets/turkey.jpg';
 
 const getStars = (rating: number) => '★'.repeat(rating) + '☆'.repeat(5 - rating);
 
@@ -67,7 +71,11 @@ const getImageSource = (imageName: string) => {
     'pepperedchicken.jpg': pepperedchicken,
     'moimoi.jpg': moimoi,
     'ofadarice.jpg': ofadarice,
-    'poundonsoup.jpg': poundonsoup
+    'poundonsoup.jpg': poundonsoup,
+    'vitamalt.jpg': vitamalt,
+    'poundoyam.jpg': poundoyam,
+    'yam.jpg': yam,
+    'turkey.jpg': turkey
   };
 
   // If the image is a filename, return the corresponding imported image

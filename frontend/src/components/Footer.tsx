@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-3">
-              <img className="h-8 w-auto" src={logo} alt="Logo" />
+              <img className="h-8 w-auto p-1 rounded-full aspect-[2/1] object-cover" src={logo} alt="Logo" />
               <span className="text-xl font-bold">ViDi Kitchen</span>
             </Link>
             <p className="text-gray-400 text-sm">
